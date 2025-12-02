@@ -10,12 +10,12 @@
 ## Functional Features
 - Comprehensive product catalog with categories and filtering options specific to electronics (brands, specifications, price range).
 - Shopping cart functionality including add/update/remove products, save for later, and guest checkout.
-- Secure and versatile payment integration supporting credit cards, PayPal, and other local/global gateways.
+- Secure and versatile payment integration supporting credit cards, PayPal, and other local/global gateways. As well as promotions support(promo codes with discounts) given by staff(people who manage products) or admins.
 - Order management system with tracking, order history, cancellation, and returns processing.
 - Customer support tools such as FAQs, contact forms, and email notifications.
 
 ## Backend and Management
-- Inventory management with real-time stock level updates, low stock alerts, and easy restocking workflows.
+- Inventory management with real-time stock level updates, low stock alerts, and easy restocking workflows. Promotional codes/campaigns.
 - Admin dashboard for managing products, orders, customer data, and promotional campaigns.
 - Analytics and reporting for sales performance, user behavior, and inventory insights.
 
