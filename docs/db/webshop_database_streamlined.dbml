@@ -1,0 +1,207 @@
+
+// ============================================================
+// WEBSHOP DATABASE SCHEMA (DBML)
+// Electronics E-Commerce Platform - Streamlined Version
+// For use with: dbdiagram.io, DBeaver, etc.
+// ============================================================
+
+Table users {
+  user_id INT [primary key, increment]
+  email VARCHAR(255) [unique, not null]
+  username VARCHAR(100) [unique, not null]
+  password_hash VARCHAR(255) [not null]
+  first_name VARCHAR(100)
+  last_name VARCHAR(100)
+  phone VARCHAR(20)
+  account_status ENUM('active','inactive','suspended') [default: 'active']
+  user_type ENUM('customer','admin','staff') [default: 'customer']
+  created_at TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+  updated_at TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}
+
+Table user_addresses {
+  address_id INT [primary key, increment]
+  user_id INT [not null]
+  address_type ENUM('billing','shipping') [not null]
+  street_address VARCHAR(255) [not null]
+  postal_code VARCHAR(20) [not null]
+  city VARCHAR(100) [not null]
+  country VARCHAR(100) [not null]
+  is_default BOOLEAN [default: false]
+}
+
+Table categories {
+  category_id INT [primary key, increment]
+  category_name VARCHAR(150) [unique, not null]
+  description TEXT
+  is_active BOOLEAN [default: true]
+}
+
+Table brands {
+  brand_id INT [primary key, increment]
+  brand_name VARCHAR(150) [unique, not null]
+  is_active BOOLEAN [default: true]
+}
+
+Table products {
+  product_id INT [primary key, increment]
+  product_name VARCHAR(255) [not null]
+  sku VARCHAR(100) [unique, not null]
+  description TEXT
+  category_id INT [not null]
+  brand_id INT
+  price_base DECIMAL(10,2) [not null]
+  discount_percentage INT
+  stock_quantity INT [not null, default: 0]
+  low_stock_threshold INT [default: 10]
+  is_active BOOLEAN [default: true]
+  average_rating DECIMAL(3,2) [default: 0]
+  total_reviews INT [default: 0]
+  created_at TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+  updated_at TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}
+
+Table product_images {
+  image_id INT [primary key, increment]
+  product_id INT [not null]
+  image_url VARCHAR(500) [not null]
+  is_primary BOOLEAN [default: false]
+}
+
+Table product_reviews {
+  review_id INT [primary key, increment]
+  product_id INT [not null]
+  user_id INT [not null]
+  rating INT [not null]
+  review_text TEXT
+  is_verified_purchase BOOLEAN [default: false]
+  created_at TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}
+
+Table wishlist {
+  wishlist_id INT [primary key, increment]
+  user_id INT [not null]
+  product_id INT [not null]
+  added_at TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}
+
+Table shopping_carts {
+  cart_id INT [primary key, increment]
+  user_id INT
+  session_id VARCHAR(255)
+  created_at TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+  updated_at TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}
+
+Table cart_items {
+  cart_item_id INT [primary key, increment]
+  cart_id INT [not null]
+  product_id INT [not null]
+  quantity INT [not null, default: 1]
+  price_at_time DECIMAL(10,2) [not null]
+  added_at TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}
+
+Table orders {
+  order_id INT [primary key, increment]
+  user_id INT
+  order_number VARCHAR(50) [unique, not null]
+  order_status ENUM('pending','confirmed','shipped','delivered','cancelled') [default: 'pending']
+  payment_status ENUM('pending','completed','failed') [default: 'pending']
+  subtotal DECIMAL(10,2) [not null]
+  discount_amount DECIMAL(10,2) [default: 0]
+  tax_amount DECIMAL(10,2) [default: 0]
+  total_amount DECIMAL(10,2) [not null]
+  customer_email VARCHAR(255) [not null]
+  customer_phone VARCHAR(20)
+  notes TEXT
+  order_date TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+  confirmed_at DATETIME
+  shipped_at DATETIME
+  delivered_at DATETIME
+}
+
+Table order_items {
+  order_item_id INT [primary key, increment]
+  order_id INT [not null]
+  product_id INT [not null]
+  product_name VARCHAR(255) [not null]
+  quantity INT [not null, default: 1]
+  unit_price DECIMAL(10,2) [not null]
+  total_price DECIMAL(10,2) [not null]
+}
+
+Table returns {
+  return_id INT [primary key, increment]
+  order_id INT [not null]
+  user_id INT [not null]
+  return_status ENUM('requested','approved','rejected','completed') [default: 'requested']
+  reason VARCHAR(255) [not null]
+  requested_at TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+  approved_at DATETIME
+}
+
+Table promotions {
+  promotion_id INT [primary key, increment]
+  promotion_name VARCHAR(255) [not null]
+  code VARCHAR(50) [unique]
+  discount_percentage DECIMAL(5,2) [not null]
+  start_date DATETIME [not null]
+  end_date DATETIME [not null]
+  max_uses INT
+  current_uses INT [default: 0]
+  is_active BOOLEAN [default: true]
+  created_at TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}
+
+Table promo_usage {
+  usage_id INT [primary key, increment]
+  promotion_id INT [not null]
+  order_id INT [not null]
+  used_at TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}
+
+Table contact_form {
+  contact_id INT [primary key, increment]
+  user_id INT
+  email VARCHAR(255) [not null]
+  name VARCHAR(255) [not null]
+  subject VARCHAR(255) [not null]
+  message TEXT [not null]
+  status ENUM('new','replied','closed') [default: 'new']
+  submitted_at TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}
+
+Table notifications {
+  notification_id INT [primary key, increment]
+  user_id INT [not null]
+  notification_type ENUM('order_update','review_reply','promotion','system') [default: 'system']
+  message TEXT [not null]
+  is_read BOOLEAN [default: false]
+  created_at TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}
+
+// ============================================================
+// FOREIGN KEY RELATIONSHIPS
+// ============================================================
+
+Ref: user_addresses.user_id > users.user_id
+Ref: products.category_id > categories.category_id
+Ref: products.brand_id > brands.brand_id
+Ref: product_images.product_id > products.product_id
+Ref: product_reviews.product_id > products.product_id
+Ref: product_reviews.user_id > users.user_id
+Ref: wishlist.user_id > users.user_id
+Ref: wishlist.product_id > products.product_id
+Ref: shopping_carts.user_id > users.user_id
+Ref: cart_items.cart_id > shopping_carts.cart_id
+Ref: cart_items.product_id > products.product_id
+Ref: orders.user_id > users.user_id
+Ref: order_items.order_id > orders.order_id
+Ref: order_items.product_id > products.product_id
+Ref: returns.order_id > orders.order_id
+Ref: returns.user_id > users.user_id
+Ref: promo_usage.promotion_id > promotions.promotion_id
+Ref: promo_usage.order_id > orders.order_id
+Ref: contact_form.user_id > users.user_id
+Ref: notifications.user_id > users.user_id

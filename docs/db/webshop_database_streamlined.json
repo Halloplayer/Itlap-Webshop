@@ -1,0 +1,277 @@
+{
+  "database": {
+    "name": "electronics_webshop",
+    "version": "2.0.0",
+    "description": "Streamlined Electronics E-Commerce Database",
+    "created_date": "2025-12-02",
+    "total_tables": 18,
+    "tables": [
+      {
+        "id": "1",
+        "name": "users",
+        "description": "User account information and authentication",
+        "columns": [
+          {"name": "user_id", "type": "INT", "pk": true, "ai": true, "nullable": false},
+          {"name": "email", "type": "VARCHAR(255)", "unique": true, "nullable": false},
+          {"name": "username", "type": "VARCHAR(100)", "unique": true, "nullable": false},
+          {"name": "password_hash", "type": "VARCHAR(255)", "nullable": false},
+          {"name": "first_name", "type": "VARCHAR(100)"},
+          {"name": "last_name", "type": "VARCHAR(100)"},
+          {"name": "phone", "type": "VARCHAR(20)"},
+          {"name": "account_status", "type": "ENUM('active','inactive','suspended')", "default": "active"},
+          {"name": "user_type", "type": "ENUM('customer','admin','staff')", "default": "customer"},
+          {"name": "created_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"},
+          {"name": "updated_at", "type": "TIMESTAMP", "on_update": "CURRENT_TIMESTAMP"}
+        ]
+      },
+      {
+        "id": "2",
+        "name": "user_addresses",
+        "description": "Multiple shipping and billing addresses per user",
+        "columns": [
+          {"name": "address_id", "type": "INT", "pk": true, "ai": true, "nullable": false},
+          {"name": "user_id", "type": "INT", "fk": true, "fk_table": "users", "nullable": false},
+          {"name": "address_type", "type": "ENUM('billing','shipping')", "nullable": false},
+          {"name": "street_address", "type": "VARCHAR(255)", "nullable": false},
+          {"name": "postal_code", "type": "VARCHAR(20)", "nullable": false},
+          {"name": "city", "type": "VARCHAR(100)", "nullable": false},
+          {"name": "country", "type": "VARCHAR(100)", "nullable": false},
+          {"name": "is_default", "type": "BOOLEAN", "default": false}
+        ]
+      },
+      {
+        "id": "3",
+        "name": "categories",
+        "description": "Product categories",
+        "columns": [
+          {"name": "category_id", "type": "INT", "pk": true, "ai": true, "nullable": false},
+          {"name": "category_name", "type": "VARCHAR(150)", "unique": true, "nullable": false},
+          {"name": "description", "type": "TEXT"},
+          {"name": "is_active", "type": "BOOLEAN", "default": true}
+        ]
+      },
+      {
+        "id": "4",
+        "name": "brands",
+        "description": "Product brands/manufacturers",
+        "columns": [
+          {"name": "brand_id", "type": "INT", "pk": true, "ai": true, "nullable": false},
+          {"name": "brand_name", "type": "VARCHAR(150)", "unique": true, "nullable": false},
+          {"name": "is_active", "type": "BOOLEAN", "default": true}
+        ]
+      },
+      {
+        "id": "5",
+        "name": "products",
+        "description": "Product catalog",
+        "columns": [
+          {"name": "product_id", "type": "INT", "pk": true, "ai": true, "nullable": false},
+          {"name": "product_name", "type": "VARCHAR(255)", "nullable": false},
+          {"name": "sku", "type": "VARCHAR(100)", "unique": true, "nullable": false},
+          {"name": "description", "type": "TEXT"},
+          {"name": "category_id", "type": "INT", "fk": true, "fk_table": "categories", "nullable": false},
+          {"name": "brand_id", "type": "INT", "fk": true, "fk_table": "brands"},
+          {"name": "price_base", "type": "DECIMAL(10,2)", "nullable": false},
+          {"name": "discount_percentage", "type": "INT"},
+          {"name": "stock_quantity", "type": "INT", "nullable": false, "default": 0},
+          {"name": "low_stock_threshold", "type": "INT", "default": 10},
+          {"name": "is_active", "type": "BOOLEAN", "default": true},
+          {"name": "average_rating", "type": "DECIMAL(3,2)", "default": 0},
+          {"name": "total_reviews", "type": "INT", "default": 0},
+          {"name": "created_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"},
+          {"name": "updated_at", "type": "TIMESTAMP", "on_update": "CURRENT_TIMESTAMP"}
+        ]
+      },
+      {
+        "id": "6",
+        "name": "product_images",
+        "description": "Product gallery images",
+        "columns": [
+          {"name": "image_id", "type": "INT", "pk": true, "ai": true, "nullable": false},
+          {"name": "product_id", "type": "INT", "fk": true, "fk_table": "products", "nullable": false},
+          {"name": "image_url", "type": "VARCHAR(500)", "nullable": false},
+          {"name": "is_primary", "type": "BOOLEAN", "default": false}
+        ]
+      },
+      {
+        "id": "7",
+        "name": "product_reviews",
+        "description": "Customer reviews and ratings",
+        "columns": [
+          {"name": "review_id", "type": "INT", "pk": true, "ai": true, "nullable": false},
+          {"name": "product_id", "type": "INT", "fk": true, "fk_table": "products", "nullable": false},
+          {"name": "user_id", "type": "INT", "fk": true, "fk_table": "users", "nullable": false},
+          {"name": "rating", "type": "INT", "nullable": false},
+          {"name": "review_text", "type": "TEXT"},
+          {"name": "is_verified_purchase", "type": "BOOLEAN", "default": false},
+          {"name": "created_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"}
+        ]
+      },
+      {
+        "id": "8",
+        "name": "wishlist",
+        "description": "Bookmarked products",
+        "columns": [
+          {"name": "wishlist_id", "type": "INT", "pk": true, "ai": true, "nullable": false},
+          {"name": "user_id", "type": "INT", "fk": true, "fk_table": "users", "nullable": false},
+          {"name": "product_id", "type": "INT", "fk": true, "fk_table": "products", "nullable": false},
+          {"name": "added_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"}
+        ]
+      },
+      {
+        "id": "9",
+        "name": "shopping_carts",
+        "description": "Shopping cart sessions",
+        "columns": [
+          {"name": "cart_id", "type": "INT", "pk": true, "ai": true, "nullable": false},
+          {"name": "user_id", "type": "INT", "fk": true, "fk_table": "users"},
+          {"name": "session_id", "type": "VARCHAR(255)"},
+          {"name": "created_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"},
+          {"name": "updated_at", "type": "TIMESTAMP", "on_update": "CURRENT_TIMESTAMP"}
+        ]
+      },
+      {
+        "id": "10",
+        "name": "cart_items",
+        "description": "Items in shopping cart",
+        "columns": [
+          {"name": "cart_item_id", "type": "INT", "pk": true, "ai": true, "nullable": false},
+          {"name": "cart_id", "type": "INT", "fk": true, "fk_table": "shopping_carts", "nullable": false},
+          {"name": "product_id", "type": "INT", "fk": true, "fk_table": "products", "nullable": false},
+          {"name": "quantity", "type": "INT", "nullable": false, "default": 1},
+          {"name": "price_at_time", "type": "DECIMAL(10,2)", "nullable": false},
+          {"name": "added_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"}
+        ]
+      },
+      {
+        "id": "11",
+        "name": "orders",
+        "description": "Customer orders",
+        "columns": [
+          {"name": "order_id", "type": "INT", "pk": true, "ai": true, "nullable": false},
+          {"name": "user_id", "type": "INT", "fk": true, "fk_table": "users"},
+          {"name": "order_number", "type": "VARCHAR(50)", "unique": true, "nullable": false},
+          {"name": "order_status", "type": "ENUM('pending','confirmed','shipped','delivered','cancelled')", "default": "pending"},
+          {"name": "payment_status", "type": "ENUM('pending','completed','failed')", "default": "pending"},
+          {"name": "subtotal", "type": "DECIMAL(10,2)", "nullable": false},
+          {"name": "discount_amount", "type": "DECIMAL(10,2)", "default": 0},
+          {"name": "tax_amount", "type": "DECIMAL(10,2)", "default": 0},
+          {"name": "total_amount", "type": "DECIMAL(10,2)", "nullable": false},
+          {"name": "customer_email", "type": "VARCHAR(255)", "nullable": false},
+          {"name": "customer_phone", "type": "VARCHAR(20)"},
+          {"name": "notes", "type": "TEXT"},
+          {"name": "order_date", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"},
+          {"name": "confirmed_at", "type": "DATETIME"},
+          {"name": "shipped_at", "type": "DATETIME"},
+          {"name": "delivered_at", "type": "DATETIME"}
+        ]
+      },
+      {
+        "id": "12",
+        "name": "order_items",
+        "description": "Items in orders",
+        "columns": [
+          {"name": "order_item_id", "type": "INT", "pk": true, "ai": true, "nullable": false},
+          {"name": "order_id", "type": "INT", "fk": true, "fk_table": "orders", "nullable": false},
+          {"name": "product_id", "type": "INT", "fk": true, "fk_table": "products", "nullable": false},
+          {"name": "product_name", "type": "VARCHAR(255)", "nullable": false},
+          {"name": "quantity", "type": "INT", "nullable": false, "default": 1},
+          {"name": "unit_price", "type": "DECIMAL(10,2)", "nullable": false},
+          {"name": "total_price", "type": "DECIMAL(10,2)", "nullable": false}
+        ]
+      },
+      {
+        "id": "13",
+        "name": "returns",
+        "description": "Return requests",
+        "columns": [
+          {"name": "return_id", "type": "INT", "pk": true, "ai": true, "nullable": false},
+          {"name": "order_id", "type": "INT", "fk": true, "fk_table": "orders", "nullable": false},
+          {"name": "user_id", "type": "INT", "fk": true, "fk_table": "users", "nullable": false},
+          {"name": "return_status", "type": "ENUM('requested','approved','rejected','completed')", "default": "requested"},
+          {"name": "reason", "type": "VARCHAR(255)", "nullable": false},
+          {"name": "requested_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"},
+          {"name": "approved_at", "type": "DATETIME"}
+        ]
+      },
+      {
+        "id": "14",
+        "name": "promotions",
+        "description": "Discount codes and campaigns",
+        "columns": [
+          {"name": "promotion_id", "type": "INT", "pk": true, "ai": true, "nullable": false},
+          {"name": "promotion_name", "type": "VARCHAR(255)", "nullable": false},
+          {"name": "code", "type": "VARCHAR(50)", "unique": true},
+          {"name": "discount_percentage", "type": "DECIMAL(5,2)", "nullable": false},
+          {"name": "start_date", "type": "DATETIME", "nullable": false},
+          {"name": "end_date", "type": "DATETIME", "nullable": false},
+          {"name": "max_uses", "type": "INT"},
+          {"name": "current_uses", "type": "INT", "default": 0},
+          {"name": "is_active", "type": "BOOLEAN", "default": true},
+          {"name": "created_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"}
+        ]
+      },
+      {
+        "id": "15",
+        "name": "promo_usage",
+        "description": "Track promotion usage",
+        "columns": [
+          {"name": "usage_id", "type": "INT", "pk": true, "ai": true, "nullable": false},
+          {"name": "promotion_id", "type": "INT", "fk": true, "fk_table": "promotions", "nullable": false},
+          {"name": "order_id", "type": "INT", "fk": true, "fk_table": "orders", "nullable": false},
+          {"name": "used_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"}
+        ]
+      },
+      {
+        "id": "16",
+        "name": "contact_form",
+        "description": "Customer support inquiries",
+        "columns": [
+          {"name": "contact_id", "type": "INT", "pk": true, "ai": true, "nullable": false},
+          {"name": "user_id", "type": "INT", "fk": true, "fk_table": "users"},
+          {"name": "email", "type": "VARCHAR(255)", "nullable": false},
+          {"name": "name", "type": "VARCHAR(255)", "nullable": false},
+          {"name": "subject", "type": "VARCHAR(255)", "nullable": false},
+          {"name": "message", "type": "TEXT", "nullable": false},
+          {"name": "status", "type": "ENUM('new','replied','closed')", "default": "new"},
+          {"name": "submitted_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"}
+        ]
+      },
+      {
+        "id": "17",
+        "name": "notifications",
+        "description": "User notifications",
+        "columns": [
+          {"name": "notification_id", "type": "INT", "pk": true, "ai": true, "nullable": false},
+          {"name": "user_id", "type": "INT", "fk": true, "fk_table": "users", "nullable": false},
+          {"name": "notification_type", "type": "ENUM('order_update','review_reply','promotion','system')", "default": "system"},
+          {"name": "message", "type": "TEXT", "nullable": false},
+          {"name": "is_read", "type": "BOOLEAN", "default": false},
+          {"name": "created_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"}
+        ]
+      }
+    ],
+    "relationships": [
+      {"from": "users", "to": "user_addresses", "type": "1:*", "fk": "user_id"},
+      {"from": "users", "to": "orders", "type": "1:*", "fk": "user_id"},
+      {"from": "users", "to": "product_reviews", "type": "1:*", "fk": "user_id"},
+      {"from": "users", "to": "wishlist", "type": "1:*", "fk": "user_id"},
+      {"from": "users", "to": "shopping_carts", "type": "1:*", "fk": "user_id"},
+      {"from": "users", "to": "returns", "type": "1:*", "fk": "user_id"},
+      {"from": "users", "to": "contact_form", "type": "1:*", "fk": "user_id"},
+      {"from": "users", "to": "notifications", "type": "1:*", "fk": "user_id"},
+      {"from": "categories", "to": "products", "type": "1:*", "fk": "category_id"},
+      {"from": "brands", "to": "products", "type": "1:*", "fk": "brand_id"},
+      {"from": "products", "to": "product_images", "type": "1:*", "fk": "product_id"},
+      {"from": "products", "to": "product_reviews", "type": "1:*", "fk": "product_id"},
+      {"from": "products", "to": "wishlist", "type": "1:*", "fk": "product_id"},
+      {"from": "products", "to": "cart_items", "type": "1:*", "fk": "product_id"},
+      {"from": "products", "to": "order_items", "type": "1:*", "fk": "product_id"},
+      {"from": "shopping_carts", "to": "cart_items", "type": "1:*", "fk": "cart_id"},
+      {"from": "orders", "to": "order_items", "type": "1:*", "fk": "order_id"},
+      {"from": "orders", "to": "returns", "type": "1:*", "fk": "order_id"},
+      {"from": "orders", "to": "promo_usage", "type": "1:*", "fk": "order_id"},
+      {"from": "promotions", "to": "promo_usage", "type": "1:*", "fk": "promotion_id"}
+    ]
+  }
+}

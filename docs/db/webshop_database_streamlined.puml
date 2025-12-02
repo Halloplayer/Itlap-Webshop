@@ -1,0 +1,215 @@
+@startuml Webshop_ER_Diagram
+!theme plain
+skinparam linetype ortho
+
+entity users {
+    * user_id : INT <<PK>>
+    --
+    * email : VARCHAR(255) <<UQ>>
+    * username : VARCHAR(100) <<UQ>>
+    * password_hash : VARCHAR(255)
+    first_name : VARCHAR(100)
+    last_name : VARCHAR(100)
+    phone : VARCHAR(20)
+    account_status : ENUM
+    user_type : ENUM
+    created_at : TIMESTAMP
+}
+
+entity user_addresses {
+    * address_id : INT <<PK>>
+    * user_id : INT <<FK>>
+    --
+    * address_type : ENUM
+    * street_address : VARCHAR(255)
+    * postal_code : VARCHAR(20)
+    * city : VARCHAR(100)
+    * country : VARCHAR(100)
+    is_default : BOOLEAN
+}
+
+entity categories {
+    * category_id : INT <<PK>>
+    --
+    * category_name : VARCHAR(150) <<UQ>>
+    description : TEXT
+    is_active : BOOLEAN
+}
+
+entity brands {
+    * brand_id : INT <<PK>>
+    --
+    * brand_name : VARCHAR(150) <<UQ>>
+    is_active : BOOLEAN
+}
+
+entity products {
+    * product_id : INT <<PK>>
+    --
+    * product_name : VARCHAR(255)
+    * sku : VARCHAR(100) <<UQ>>
+    description : TEXT
+    * category_id : INT <<FK>>
+    brand_id : INT <<FK>>
+    * price_base : DECIMAL(10,2)
+    discount_percentage : INT
+    * stock_quantity : INT
+    low_stock_threshold : INT
+    is_active : BOOLEAN
+    average_rating : DECIMAL(3,2)
+    total_reviews : INT
+}
+
+entity product_images {
+    * image_id : INT <<PK>>
+    * product_id : INT <<FK>>
+    --
+    * image_url : VARCHAR(500)
+    is_primary : BOOLEAN
+}
+
+entity product_reviews {
+    * review_id : INT <<PK>>
+    * product_id : INT <<FK>>
+    * user_id : INT <<FK>>
+    --
+    * rating : INT
+    review_text : TEXT
+    is_verified_purchase : BOOLEAN
+    created_at : TIMESTAMP
+}
+
+entity wishlist {
+    * wishlist_id : INT <<PK>>
+    * user_id : INT <<FK>>
+    * product_id : INT <<FK>>
+    --
+    added_at : TIMESTAMP
+}
+
+entity shopping_carts {
+    * cart_id : INT <<PK>>
+    user_id : INT <<FK>>
+    session_id : VARCHAR(255)
+    --
+    created_at : TIMESTAMP
+}
+
+entity cart_items {
+    * cart_item_id : INT <<PK>>
+    * cart_id : INT <<FK>>
+    * product_id : INT <<FK>>
+    --
+    * quantity : INT
+    * price_at_time : DECIMAL(10,2)
+    added_at : TIMESTAMP
+}
+
+entity orders {
+    * order_id : INT <<PK>>
+    user_id : INT <<FK>>
+    --
+    * order_number : VARCHAR(50) <<UQ>>
+    order_status : ENUM
+    payment_status : ENUM
+    * subtotal : DECIMAL(10,2)
+    discount_amount : DECIMAL(10,2)
+    tax_amount : DECIMAL(10,2)
+    * total_amount : DECIMAL(10,2)
+    * customer_email : VARCHAR(255)
+    customer_phone : VARCHAR(20)
+    order_date : TIMESTAMP
+}
+
+entity order_items {
+    * order_item_id : INT <<PK>>
+    * order_id : INT <<FK>>
+    * product_id : INT <<FK>>
+    --
+    * product_name : VARCHAR(255)
+    * quantity : INT
+    * unit_price : DECIMAL(10,2)
+    * total_price : DECIMAL(10,2)
+}
+
+entity returns {
+    * return_id : INT <<PK>>
+    * order_id : INT <<FK>>
+    * user_id : INT <<FK>>
+    --
+    return_status : ENUM
+    * reason : VARCHAR(255)
+    requested_at : TIMESTAMP
+}
+
+entity promotions {
+    * promotion_id : INT <<PK>>
+    --
+    * promotion_name : VARCHAR(255)
+    code : VARCHAR(50) <<UQ>>
+    * discount_percentage : DECIMAL(5,2)
+    * start_date : DATETIME
+    * end_date : DATETIME
+    max_uses : INT
+    current_uses : INT
+    is_active : BOOLEAN
+}
+
+entity promo_usage {
+    * usage_id : INT <<PK>>
+    * promotion_id : INT <<FK>>
+    * order_id : INT <<FK>>
+    --
+    used_at : TIMESTAMP
+}
+
+entity contact_form {
+    * contact_id : INT <<PK>>
+    user_id : INT <<FK>>
+    --
+    * email : VARCHAR(255)
+    * name : VARCHAR(255)
+    * subject : VARCHAR(255)
+    * message : TEXT
+    status : ENUM
+    submitted_at : TIMESTAMP
+}
+
+entity notifications {
+    * notification_id : INT <<PK>>
+    * user_id : INT <<FK>>
+    --
+    notification_type : ENUM
+    * message : TEXT
+    is_read : BOOLEAN
+    created_at : TIMESTAMP
+}
+
+users ||--o{ user_addresses : has
+users ||--o{ product_reviews : writes
+users ||--o{ wishlist : creates
+users ||--o{ shopping_carts : has
+users ||--o{ orders : places
+users ||--o{ returns : initiates
+users ||--o{ contact_form : submits
+users ||--o{ notifications : receives
+
+categories ||--o{ products : contains
+brands ||--o{ products : manufactures
+
+products ||--o{ product_images : has
+products ||--o{ product_reviews : receives
+products ||--o{ wishlist : added_to
+products ||--o{ cart_items : in_cart
+products ||--o{ order_items : ordered
+
+shopping_carts ||--o{ cart_items : contains
+orders ||--o{ order_items : contains
+orders ||--o{ returns : has_return
+orders ||--o{ promo_usage : used_promotion
+
+promotions ||--o{ promo_usage : applied_in
+
+product_reviews ||--|| users : by
+
+@enduml
