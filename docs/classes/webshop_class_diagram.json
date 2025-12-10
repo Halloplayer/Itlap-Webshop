@@ -1,0 +1,1386 @@
+{
+  "class_diagram": {
+    "name": "electronics_webshop",
+    "version": "1.0.0",
+    "type": "Class Diagram",
+    "description": "UML Class Diagram for Electronics Webshop System",
+    "created_date": "2025-12-10",
+    "total_classes": 17,
+    "classes": [
+      {
+        "id": "1",
+        "name": "User",
+        "description": "Represents a user in the system",
+        "visibility": "public",
+        "abstract": false,
+        "attributes": [
+          {
+            "name": "user_id",
+            "type": "int",
+            "visibility": "private",
+            "id": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "visibility": "private",
+            "unique": true
+          },
+          {
+            "name": "username",
+            "type": "string",
+            "visibility": "private",
+            "unique": true
+          },
+          {
+            "name": "password_hash",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "account_status",
+            "type": "enum",
+            "visibility": "private"
+          },
+          {
+            "name": "user_type",
+            "type": "enum",
+            "visibility": "private"
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "visibility": "private"
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "visibility": "private"
+          }
+        ],
+        "methods": [
+          {
+            "name": "register",
+            "return_type": "void",
+            "parameters": []
+          },
+          {
+            "name": "login",
+            "return_type": "boolean",
+            "parameters": [
+              {
+                "name": "email",
+                "type": "string"
+              },
+              {
+                "name": "password",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "updateProfile",
+            "return_type": "void",
+            "parameters": [
+              {
+                "name": "data",
+                "type": "object"
+              }
+            ]
+          },
+          {
+            "name": "getAddresses",
+            "return_type": "List<UserAddress>",
+            "parameters": []
+          },
+          {
+            "name": "getOrders",
+            "return_type": "List<Order>",
+            "parameters": []
+          },
+          {
+            "name": "getWishlist",
+            "return_type": "List<Product>",
+            "parameters": []
+          },
+          {
+            "name": "getNotifications",
+            "return_type": "List<Notification>",
+            "parameters": []
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "name": "UserAddress",
+        "description": "User address information",
+        "visibility": "public",
+        "abstract": false,
+        "attributes": [
+          {
+            "name": "address_id",
+            "type": "int",
+            "visibility": "private",
+            "id": true
+          },
+          {
+            "name": "user_id",
+            "type": "int",
+            "visibility": "private",
+            "fk": true
+          },
+          {
+            "name": "address_type",
+            "type": "enum",
+            "visibility": "private"
+          },
+          {
+            "name": "street_address",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "postal_code",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "city",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "country",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "is_default",
+            "type": "boolean",
+            "visibility": "private"
+          }
+        ],
+        "methods": [
+          {
+            "name": "updateAddress",
+            "return_type": "void",
+            "parameters": [
+              {
+                "name": "data",
+                "type": "object"
+              }
+            ]
+          },
+          {
+            "name": "delete",
+            "return_type": "void",
+            "parameters": []
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "name": "Product",
+        "description": "Product in catalog",
+        "visibility": "public",
+        "abstract": false,
+        "attributes": [
+          {
+            "name": "product_id",
+            "type": "int",
+            "visibility": "private",
+            "id": true
+          },
+          {
+            "name": "product_name",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "sku",
+            "type": "string",
+            "visibility": "private",
+            "unique": true
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "category_id",
+            "type": "int",
+            "visibility": "private",
+            "fk": true
+          },
+          {
+            "name": "brand_id",
+            "type": "int",
+            "visibility": "private",
+            "fk": true
+          },
+          {
+            "name": "price_base",
+            "type": "decimal",
+            "visibility": "private"
+          },
+          {
+            "name": "discount_percentage",
+            "type": "int",
+            "visibility": "private"
+          },
+          {
+            "name": "stock_quantity",
+            "type": "int",
+            "visibility": "private"
+          },
+          {
+            "name": "low_stock_threshold",
+            "type": "int",
+            "visibility": "private"
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "visibility": "private"
+          },
+          {
+            "name": "average_rating",
+            "type": "decimal",
+            "visibility": "private"
+          },
+          {
+            "name": "total_reviews",
+            "type": "int",
+            "visibility": "private"
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "visibility": "private"
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "visibility": "private"
+          }
+        ],
+        "methods": [
+          {
+            "name": "getPrice",
+            "return_type": "decimal",
+            "parameters": []
+          },
+          {
+            "name": "getDiscount",
+            "return_type": "decimal",
+            "parameters": []
+          },
+          {
+            "name": "updateStock",
+            "return_type": "void",
+            "parameters": [
+              {
+                "name": "quantity",
+                "type": "int"
+              }
+            ]
+          },
+          {
+            "name": "getImages",
+            "return_type": "List<ProductImage>",
+            "parameters": []
+          },
+          {
+            "name": "getReviews",
+            "return_type": "List<ProductReview>",
+            "parameters": []
+          },
+          {
+            "name": "getRating",
+            "return_type": "decimal",
+            "parameters": []
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "name": "ProductImage",
+        "description": "Product image",
+        "visibility": "public",
+        "abstract": false,
+        "attributes": [
+          {
+            "name": "image_id",
+            "type": "int",
+            "visibility": "private",
+            "id": true
+          },
+          {
+            "name": "product_id",
+            "type": "int",
+            "visibility": "private",
+            "fk": true
+          },
+          {
+            "name": "image_url",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "is_primary",
+            "type": "boolean",
+            "visibility": "private"
+          }
+        ],
+        "methods": [
+          {
+            "name": "setPrimary",
+            "return_type": "void",
+            "parameters": []
+          },
+          {
+            "name": "delete",
+            "return_type": "void",
+            "parameters": []
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "name": "ProductReview",
+        "description": "Product review and rating",
+        "visibility": "public",
+        "abstract": false,
+        "attributes": [
+          {
+            "name": "review_id",
+            "type": "int",
+            "visibility": "private",
+            "id": true
+          },
+          {
+            "name": "product_id",
+            "type": "int",
+            "visibility": "private",
+            "fk": true
+          },
+          {
+            "name": "user_id",
+            "type": "int",
+            "visibility": "private",
+            "fk": true
+          },
+          {
+            "name": "rating",
+            "type": "int",
+            "visibility": "private"
+          },
+          {
+            "name": "review_text",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "is_verified_purchase",
+            "type": "boolean",
+            "visibility": "private"
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "visibility": "private"
+          }
+        ],
+        "methods": [
+          {
+            "name": "submitReview",
+            "return_type": "void",
+            "parameters": [
+              {
+                "name": "rating",
+                "type": "int"
+              },
+              {
+                "name": "text",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "isValid",
+            "return_type": "boolean",
+            "parameters": []
+          },
+          {
+            "name": "getProduct",
+            "return_type": "Product",
+            "parameters": []
+          }
+        ]
+      },
+      {
+        "id": "6",
+        "name": "Category",
+        "description": "Product category",
+        "visibility": "public",
+        "abstract": false,
+        "attributes": [
+          {
+            "name": "category_id",
+            "type": "int",
+            "visibility": "private",
+            "id": true
+          },
+          {
+            "name": "category_name",
+            "type": "string",
+            "visibility": "private",
+            "unique": true
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "visibility": "private"
+          }
+        ],
+        "methods": [
+          {
+            "name": "getProducts",
+            "return_type": "List<Product>",
+            "parameters": []
+          },
+          {
+            "name": "activate",
+            "return_type": "void",
+            "parameters": []
+          },
+          {
+            "name": "deactivate",
+            "return_type": "void",
+            "parameters": []
+          }
+        ]
+      },
+      {
+        "id": "7",
+        "name": "Brand",
+        "description": "Product brand",
+        "visibility": "public",
+        "abstract": false,
+        "attributes": [
+          {
+            "name": "brand_id",
+            "type": "int",
+            "visibility": "private",
+            "id": true
+          },
+          {
+            "name": "brand_name",
+            "type": "string",
+            "visibility": "private",
+            "unique": true
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "visibility": "private"
+          }
+        ],
+        "methods": [
+          {
+            "name": "getProducts",
+            "return_type": "List<Product>",
+            "parameters": []
+          },
+          {
+            "name": "activate",
+            "return_type": "void",
+            "parameters": []
+          },
+          {
+            "name": "deactivate",
+            "return_type": "void",
+            "parameters": []
+          }
+        ]
+      },
+      {
+        "id": "8",
+        "name": "ShoppingCart",
+        "description": "Shopping cart",
+        "visibility": "public",
+        "abstract": false,
+        "attributes": [
+          {
+            "name": "cart_id",
+            "type": "int",
+            "visibility": "private",
+            "id": true
+          },
+          {
+            "name": "user_id",
+            "type": "int",
+            "visibility": "private",
+            "fk": true
+          },
+          {
+            "name": "session_id",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "visibility": "private"
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "visibility": "private"
+          }
+        ],
+        "methods": [
+          {
+            "name": "addItem",
+            "return_type": "void",
+            "parameters": [
+              {
+                "name": "product",
+                "type": "Product"
+              },
+              {
+                "name": "quantity",
+                "type": "int"
+              }
+            ]
+          },
+          {
+            "name": "removeItem",
+            "return_type": "void",
+            "parameters": [
+              {
+                "name": "product",
+                "type": "Product"
+              }
+            ]
+          },
+          {
+            "name": "updateQuantity",
+            "return_type": "void",
+            "parameters": [
+              {
+                "name": "product",
+                "type": "Product"
+              },
+              {
+                "name": "quantity",
+                "type": "int"
+              }
+            ]
+          },
+          {
+            "name": "getTotal",
+            "return_type": "decimal",
+            "parameters": []
+          },
+          {
+            "name": "getItems",
+            "return_type": "List<CartItem>",
+            "parameters": []
+          },
+          {
+            "name": "clear",
+            "return_type": "void",
+            "parameters": []
+          },
+          {
+            "name": "convertToOrder",
+            "return_type": "Order",
+            "parameters": []
+          }
+        ]
+      },
+      {
+        "id": "9",
+        "name": "CartItem",
+        "description": "Item in shopping cart",
+        "visibility": "public",
+        "abstract": false,
+        "attributes": [
+          {
+            "name": "cart_item_id",
+            "type": "int",
+            "visibility": "private",
+            "id": true
+          },
+          {
+            "name": "cart_id",
+            "type": "int",
+            "visibility": "private",
+            "fk": true
+          },
+          {
+            "name": "product_id",
+            "type": "int",
+            "visibility": "private",
+            "fk": true
+          },
+          {
+            "name": "quantity",
+            "type": "int",
+            "visibility": "private"
+          },
+          {
+            "name": "price_at_time",
+            "type": "decimal",
+            "visibility": "private"
+          },
+          {
+            "name": "added_at",
+            "type": "timestamp",
+            "visibility": "private"
+          }
+        ],
+        "methods": [
+          {
+            "name": "getSubtotal",
+            "return_type": "decimal",
+            "parameters": []
+          },
+          {
+            "name": "updateQuantity",
+            "return_type": "void",
+            "parameters": [
+              {
+                "name": "quantity",
+                "type": "int"
+              }
+            ]
+          },
+          {
+            "name": "delete",
+            "return_type": "void",
+            "parameters": []
+          }
+        ]
+      },
+      {
+        "id": "10",
+        "name": "Order",
+        "description": "Customer order",
+        "visibility": "public",
+        "abstract": false,
+        "attributes": [
+          {
+            "name": "order_id",
+            "type": "int",
+            "visibility": "private",
+            "id": true
+          },
+          {
+            "name": "user_id",
+            "type": "int",
+            "visibility": "private",
+            "fk": true
+          },
+          {
+            "name": "order_number",
+            "type": "string",
+            "visibility": "private",
+            "unique": true
+          },
+          {
+            "name": "order_status",
+            "type": "enum",
+            "visibility": "private"
+          },
+          {
+            "name": "payment_status",
+            "type": "enum",
+            "visibility": "private"
+          },
+          {
+            "name": "subtotal",
+            "type": "decimal",
+            "visibility": "private"
+          },
+          {
+            "name": "discount_amount",
+            "type": "decimal",
+            "visibility": "private"
+          },
+          {
+            "name": "tax_amount",
+            "type": "decimal",
+            "visibility": "private"
+          },
+          {
+            "name": "total_amount",
+            "type": "decimal",
+            "visibility": "private"
+          },
+          {
+            "name": "customer_email",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "customer_phone",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "notes",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "order_date",
+            "type": "timestamp",
+            "visibility": "private"
+          },
+          {
+            "name": "confirmed_at",
+            "type": "datetime",
+            "visibility": "private"
+          },
+          {
+            "name": "shipped_at",
+            "type": "datetime",
+            "visibility": "private"
+          },
+          {
+            "name": "delivered_at",
+            "type": "datetime",
+            "visibility": "private"
+          }
+        ],
+        "methods": [
+          {
+            "name": "calculateTotal",
+            "return_type": "decimal",
+            "parameters": []
+          },
+          {
+            "name": "confirmOrder",
+            "return_type": "void",
+            "parameters": []
+          },
+          {
+            "name": "shipOrder",
+            "return_type": "void",
+            "parameters": []
+          },
+          {
+            "name": "deliverOrder",
+            "return_type": "void",
+            "parameters": []
+          },
+          {
+            "name": "cancelOrder",
+            "return_type": "void",
+            "parameters": []
+          },
+          {
+            "name": "getItems",
+            "return_type": "List<OrderItem>",
+            "parameters": []
+          },
+          {
+            "name": "createReturn",
+            "return_type": "Return",
+            "parameters": []
+          }
+        ]
+      },
+      {
+        "id": "11",
+        "name": "OrderItem",
+        "description": "Item in order",
+        "visibility": "public",
+        "abstract": false,
+        "attributes": [
+          {
+            "name": "order_item_id",
+            "type": "int",
+            "visibility": "private",
+            "id": true
+          },
+          {
+            "name": "order_id",
+            "type": "int",
+            "visibility": "private",
+            "fk": true
+          },
+          {
+            "name": "product_id",
+            "type": "int",
+            "visibility": "private",
+            "fk": true
+          },
+          {
+            "name": "product_name",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "quantity",
+            "type": "int",
+            "visibility": "private"
+          },
+          {
+            "name": "unit_price",
+            "type": "decimal",
+            "visibility": "private"
+          },
+          {
+            "name": "total_price",
+            "type": "decimal",
+            "visibility": "private"
+          }
+        ],
+        "methods": [
+          {
+            "name": "getSubtotal",
+            "return_type": "decimal",
+            "parameters": []
+          }
+        ]
+      },
+      {
+        "id": "12",
+        "name": "Return",
+        "description": "Product return request",
+        "visibility": "public",
+        "abstract": false,
+        "attributes": [
+          {
+            "name": "return_id",
+            "type": "int",
+            "visibility": "private",
+            "id": true
+          },
+          {
+            "name": "order_id",
+            "type": "int",
+            "visibility": "private",
+            "fk": true
+          },
+          {
+            "name": "user_id",
+            "type": "int",
+            "visibility": "private",
+            "fk": true
+          },
+          {
+            "name": "return_status",
+            "type": "enum",
+            "visibility": "private"
+          },
+          {
+            "name": "reason",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "requested_at",
+            "type": "timestamp",
+            "visibility": "private"
+          },
+          {
+            "name": "approved_at",
+            "type": "datetime",
+            "visibility": "private"
+          }
+        ],
+        "methods": [
+          {
+            "name": "requestReturn",
+            "return_type": "void",
+            "parameters": []
+          },
+          {
+            "name": "approveReturn",
+            "return_type": "void",
+            "parameters": []
+          },
+          {
+            "name": "rejectReturn",
+            "return_type": "void",
+            "parameters": []
+          },
+          {
+            "name": "completeReturn",
+            "return_type": "void",
+            "parameters": []
+          },
+          {
+            "name": "getOrder",
+            "return_type": "Order",
+            "parameters": []
+          }
+        ]
+      },
+      {
+        "id": "13",
+        "name": "Promotion",
+        "description": "Discount promotion",
+        "visibility": "public",
+        "abstract": false,
+        "attributes": [
+          {
+            "name": "promotion_id",
+            "type": "int",
+            "visibility": "private",
+            "id": true
+          },
+          {
+            "name": "promotion_name",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "code",
+            "type": "string",
+            "visibility": "private",
+            "unique": true
+          },
+          {
+            "name": "discount_percentage",
+            "type": "decimal",
+            "visibility": "private"
+          },
+          {
+            "name": "start_date",
+            "type": "datetime",
+            "visibility": "private"
+          },
+          {
+            "name": "end_date",
+            "type": "datetime",
+            "visibility": "private"
+          },
+          {
+            "name": "max_uses",
+            "type": "int",
+            "visibility": "private"
+          },
+          {
+            "name": "current_uses",
+            "type": "int",
+            "visibility": "private"
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "visibility": "private"
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "visibility": "private"
+          }
+        ],
+        "methods": [
+          {
+            "name": "isValid",
+            "return_type": "boolean",
+            "parameters": []
+          },
+          {
+            "name": "isExpired",
+            "return_type": "boolean",
+            "parameters": []
+          },
+          {
+            "name": "canUse",
+            "return_type": "boolean",
+            "parameters": []
+          },
+          {
+            "name": "apply",
+            "return_type": "decimal",
+            "parameters": [
+              {
+                "name": "order",
+                "type": "Order"
+              }
+            ]
+          },
+          {
+            "name": "increment",
+            "return_type": "void",
+            "parameters": []
+          }
+        ]
+      },
+      {
+        "id": "14",
+        "name": "PromoUsage",
+        "description": "Promotion usage tracking",
+        "visibility": "public",
+        "abstract": false,
+        "attributes": [
+          {
+            "name": "usage_id",
+            "type": "int",
+            "visibility": "private",
+            "id": true
+          },
+          {
+            "name": "promotion_id",
+            "type": "int",
+            "visibility": "private",
+            "fk": true
+          },
+          {
+            "name": "order_id",
+            "type": "int",
+            "visibility": "private",
+            "fk": true
+          },
+          {
+            "name": "used_at",
+            "type": "timestamp",
+            "visibility": "private"
+          }
+        ],
+        "methods": [
+          {
+            "name": "getDiscount",
+            "return_type": "decimal",
+            "parameters": []
+          }
+        ]
+      },
+      {
+        "id": "15",
+        "name": "ContactForm",
+        "description": "Customer support form",
+        "visibility": "public",
+        "abstract": false,
+        "attributes": [
+          {
+            "name": "contact_id",
+            "type": "int",
+            "visibility": "private",
+            "id": true
+          },
+          {
+            "name": "user_id",
+            "type": "int",
+            "visibility": "private",
+            "fk": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "subject",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "message",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "status",
+            "type": "enum",
+            "visibility": "private"
+          },
+          {
+            "name": "submitted_at",
+            "type": "timestamp",
+            "visibility": "private"
+          }
+        ],
+        "methods": [
+          {
+            "name": "submitForm",
+            "return_type": "void",
+            "parameters": [
+              {
+                "name": "data",
+                "type": "object"
+              }
+            ]
+          },
+          {
+            "name": "replyToForm",
+            "return_type": "void",
+            "parameters": [
+              {
+                "name": "response",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "closeTicket",
+            "return_type": "void",
+            "parameters": []
+          },
+          {
+            "name": "getUser",
+            "return_type": "User",
+            "parameters": []
+          }
+        ]
+      },
+      {
+        "id": "16",
+        "name": "Notification",
+        "description": "User notification",
+        "visibility": "public",
+        "abstract": false,
+        "attributes": [
+          {
+            "name": "notification_id",
+            "type": "int",
+            "visibility": "private",
+            "id": true
+          },
+          {
+            "name": "user_id",
+            "type": "int",
+            "visibility": "private",
+            "fk": true
+          },
+          {
+            "name": "notification_type",
+            "type": "enum",
+            "visibility": "private"
+          },
+          {
+            "name": "message",
+            "type": "string",
+            "visibility": "private"
+          },
+          {
+            "name": "is_read",
+            "type": "boolean",
+            "visibility": "private"
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "visibility": "private"
+          }
+        ],
+        "methods": [
+          {
+            "name": "markAsRead",
+            "return_type": "void",
+            "parameters": []
+          },
+          {
+            "name": "send",
+            "return_type": "void",
+            "parameters": []
+          },
+          {
+            "name": "delete",
+            "return_type": "void",
+            "parameters": []
+          }
+        ]
+      },
+      {
+        "id": "17",
+        "name": "Wishlist",
+        "description": "Wishlist item",
+        "visibility": "public",
+        "abstract": false,
+        "attributes": [
+          {
+            "name": "wishlist_id",
+            "type": "int",
+            "visibility": "private",
+            "id": true
+          },
+          {
+            "name": "user_id",
+            "type": "int",
+            "visibility": "private",
+            "fk": true
+          },
+          {
+            "name": "product_id",
+            "type": "int",
+            "visibility": "private",
+            "fk": true
+          },
+          {
+            "name": "added_at",
+            "type": "timestamp",
+            "visibility": "private"
+          }
+        ],
+        "methods": [
+          {
+            "name": "addToWishlist",
+            "return_type": "void",
+            "parameters": []
+          },
+          {
+            "name": "removeFromWishlist",
+            "return_type": "void",
+            "parameters": []
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "from": "User",
+        "to": "UserAddress",
+        "type": "composition",
+        "cardinality": "1:*"
+      },
+      {
+        "from": "User",
+        "to": "Order",
+        "type": "association",
+        "cardinality": "1:*"
+      },
+      {
+        "from": "User",
+        "to": "ProductReview",
+        "type": "association",
+        "cardinality": "1:*"
+      },
+      {
+        "from": "User",
+        "to": "Wishlist",
+        "type": "association",
+        "cardinality": "1:*"
+      },
+      {
+        "from": "User",
+        "to": "ShoppingCart",
+        "type": "composition",
+        "cardinality": "1:*"
+      },
+      {
+        "from": "User",
+        "to": "Return",
+        "type": "association",
+        "cardinality": "1:*"
+      },
+      {
+        "from": "User",
+        "to": "ContactForm",
+        "type": "association",
+        "cardinality": "1:*"
+      },
+      {
+        "from": "User",
+        "to": "Notification",
+        "type": "association",
+        "cardinality": "1:*"
+      },
+      {
+        "from": "Category",
+        "to": "Product",
+        "type": "association",
+        "cardinality": "1:*"
+      },
+      {
+        "from": "Brand",
+        "to": "Product",
+        "type": "association",
+        "cardinality": "1:*"
+      },
+      {
+        "from": "Product",
+        "to": "ProductImage",
+        "type": "composition",
+        "cardinality": "1:*"
+      },
+      {
+        "from": "Product",
+        "to": "ProductReview",
+        "type": "association",
+        "cardinality": "1:*"
+      },
+      {
+        "from": "Product",
+        "to": "Wishlist",
+        "type": "association",
+        "cardinality": "1:*"
+      },
+      {
+        "from": "Product",
+        "to": "CartItem",
+        "type": "association",
+        "cardinality": "1:*"
+      },
+      {
+        "from": "Product",
+        "to": "OrderItem",
+        "type": "association",
+        "cardinality": "1:*"
+      },
+      {
+        "from": "ShoppingCart",
+        "to": "CartItem",
+        "type": "composition",
+        "cardinality": "1:*"
+      },
+      {
+        "from": "Order",
+        "to": "OrderItem",
+        "type": "composition",
+        "cardinality": "1:*"
+      },
+      {
+        "from": "Order",
+        "to": "Return",
+        "type": "association",
+        "cardinality": "1:*"
+      },
+      {
+        "from": "Order",
+        "to": "PromoUsage",
+        "type": "association",
+        "cardinality": "1:*"
+      },
+      {
+        "from": "Promotion",
+        "to": "PromoUsage",
+        "type": "association",
+        "cardinality": "1:*"
+      }
+    ]
+  }
+}

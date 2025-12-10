@@ -1,0 +1,333 @@
+@startuml Webshop_Class_Diagram
+!theme plain
+skinparam classBackgroundColor #E1F5F7
+skinparam classArrowColor #333333
+skinparam classFontColor #000000
+
+' ============================================================
+' USER MANAGEMENT CLASSES
+' ============================================================
+
+class User {
+    - user_id: int {id}
+    - email: string {unique}
+    - username: string {unique}
+    - password_hash: string
+    - first_name: string
+    - last_name: string
+    - phone: string
+    - account_status: enum
+    - user_type: enum
+    - created_at: timestamp
+    - updated_at: timestamp
+    --
+    + register(): void
+    + login(email, password): bool
+    + updateProfile(data): void
+    + getAddresses(): List<UserAddress>
+    + getOrders(): List<Order>
+    + getReviews(): List<ProductReview>
+    + getWishlist(): List<Product>
+    + getNotifications(): List<Notification>
+}
+
+class UserAddress {
+    - address_id: int {id}
+    - user_id: int {fk}
+    - address_type: enum
+    - street_address: string
+    - postal_code: string
+    - city: string
+    - country: string
+    - is_default: boolean
+    --
+    + updateAddress(data): void
+    + delete(): void
+}
+
+' ============================================================
+' PRODUCT CATALOG CLASSES
+' ============================================================
+
+class Category {
+    - category_id: int {id}
+    - category_name: string {unique}
+    - description: string
+    - is_active: boolean
+    --
+    + getProducts(): List<Product>
+    + activate(): void
+    + deactivate(): void
+}
+
+class Brand {
+    - brand_id: int {id}
+    - brand_name: string {unique}
+    - is_active: boolean
+    --
+    + getProducts(): List<Product>
+    + activate(): void
+    + deactivate(): void
+}
+
+class Product {
+    - product_id: int {id}
+    - product_name: string
+    - sku: string {unique}
+    - description: string
+    - category_id: int {fk}
+    - brand_id: int {fk}
+    - price_base: decimal
+    - discount_percentage: int
+    - stock_quantity: int
+    - low_stock_threshold: int
+    - is_active: boolean
+    - average_rating: decimal
+    - total_reviews: int
+    - created_at: timestamp
+    - updated_at: timestamp
+    --
+    + getPrice(): decimal
+    + getDiscount(): decimal
+    + updateStock(quantity): void
+    + getImages(): List<ProductImage>
+    + getReviews(): List<ProductReview>
+    + getRating(): decimal
+}
+
+class ProductImage {
+    - image_id: int {id}
+    - product_id: int {fk}
+    - image_url: string
+    - is_primary: boolean
+    --
+    + setPrimary(): void
+    + delete(): void
+}
+
+class ProductReview {
+    - review_id: int {id}
+    - product_id: int {fk}
+    - user_id: int {fk}
+    - rating: int
+    - review_text: string
+    - is_verified_purchase: boolean
+    - created_at: timestamp
+    --
+    + submitReview(rating, text): void
+    + isValid(): bool
+    + getProduct(): Product
+}
+
+' ============================================================
+' SHOPPING CLASSES
+' ============================================================
+
+class ShoppingCart {
+    - cart_id: int {id}
+    - user_id: int {fk}
+    - session_id: string
+    - created_at: timestamp
+    - updated_at: timestamp
+    --
+    + addItem(product, quantity): void
+    + removeItem(product): void
+    + updateQuantity(product, quantity): void
+    + getTotal(): decimal
+    + getItems(): List<CartItem>
+    + clear(): void
+    + convertToOrder(): Order
+}
+
+class CartItem {
+    - cart_item_id: int {id}
+    - cart_id: int {fk}
+    - product_id: int {fk}
+    - quantity: int
+    - price_at_time: decimal
+    - added_at: timestamp
+    --
+    + getSubtotal(): decimal
+    + updateQuantity(quantity): void
+    + delete(): void
+}
+
+' ============================================================
+' ORDER MANAGEMENT CLASSES
+' ============================================================
+
+class Order {
+    - order_id: int {id}
+    - user_id: int {fk}
+    - order_number: string {unique}
+    - order_status: enum
+    - payment_status: enum
+    - subtotal: decimal
+    - discount_amount: decimal
+    - tax_amount: decimal
+    - total_amount: decimal
+    - customer_email: string
+    - customer_phone: string
+    - notes: string
+    - order_date: timestamp
+    - confirmed_at: datetime
+    - shipped_at: datetime
+    - delivered_at: datetime
+    --
+    + calculateTotal(): decimal
+    + confirmOrder(): void
+    + shipOrder(): void
+    + deliverOrder(): void
+    + cancelOrder(): void
+    + getItems(): List<OrderItem>
+    + createReturn(): Return
+}
+
+class OrderItem {
+    - order_item_id: int {id}
+    - order_id: int {fk}
+    - product_id: int {fk}
+    - product_name: string
+    - quantity: int
+    - unit_price: decimal
+    - total_price: decimal
+    --
+    + getSubtotal(): decimal
+}
+
+class Return {
+    - return_id: int {id}
+    - order_id: int {fk}
+    - user_id: int {fk}
+    - return_status: enum
+    - reason: string
+    - requested_at: timestamp
+    - approved_at: datetime
+    --
+    + requestReturn(): void
+    + approveReturn(): void
+    + rejectReturn(): void
+    + completeReturn(): void
+    + getOrder(): Order
+}
+
+' ============================================================
+' PROMOTION CLASSES
+' ============================================================
+
+class Promotion {
+    - promotion_id: int {id}
+    - promotion_name: string
+    - code: string {unique}
+    - discount_percentage: decimal
+    - start_date: datetime
+    - end_date: datetime
+    - max_uses: int
+    - current_uses: int
+    - is_active: boolean
+    - created_at: timestamp
+    --
+    + isValid(): bool
+    + isExpired(): bool
+    + canUse(): bool
+    + apply(order): decimal
+    + increment(): void
+}
+
+class PromoUsage {
+    - usage_id: int {id}
+    - promotion_id: int {fk}
+    - order_id: int {fk}
+    - used_at: timestamp
+    --
+    + getDiscount(): decimal
+}
+
+' ============================================================
+' SUPPORT CLASSES
+' ============================================================
+
+class ContactForm {
+    - contact_id: int {id}
+    - user_id: int {fk}
+    - email: string
+    - name: string
+    - subject: string
+    - message: string
+    - status: enum
+    - submitted_at: timestamp
+    --
+    + submitForm(data): void
+    + replyToForm(response): void
+    + closeTicket(): void
+    + getUser(): User
+}
+
+class Notification {
+    - notification_id: int {id}
+    - user_id: int {fk}
+    - notification_type: enum
+    - message: string
+    - is_read: boolean
+    - created_at: timestamp
+    --
+    + markAsRead(): void
+    + send(): void
+    + delete(): void
+}
+
+class Wishlist {
+    - wishlist_id: int {id}
+    - user_id: int {fk}
+    - product_id: int {fk}
+    - added_at: timestamp
+    --
+    + addToWishlist(): void
+    + removeFromWishlist(): void
+}
+
+' ============================================================
+' RELATIONSHIPS
+' ============================================================
+
+User "1" -- "*" UserAddress : has
+User "1" -- "*" Order : places
+User "1" -- "*" ProductReview : writes
+User "1" -- "*" Wishlist : creates
+User "1" -- "*" ShoppingCart : has
+User "1" -- "*" Return : initiates
+User "1" -- "*" ContactForm : submits
+User "1" -- "*" Notification : receives
+
+Category "1" -- "*" Product : contains
+Brand "1" -- "*" Product : manufactures
+
+Product "1" -- "*" ProductImage : has
+Product "1" -- "*" ProductReview : receives
+Product "1" -- "*" Wishlist : in_wishlist
+Product "1" -- "*" CartItem : added_to_cart
+Product "1" -- "*" OrderItem : ordered_in
+
+ShoppingCart "1" -- "*" CartItem : contains
+CartItem "1" -- "1" Product : references
+
+Order "1" -- "*" OrderItem : contains
+Order "1" -- "*" Return : has_return
+Order "1" -- "*" PromoUsage : uses
+
+Return "1" -- "1" Order : references
+Return "1" -- "1" User : requested_by
+
+Promotion "1" -- "*" PromoUsage : applied_in
+
+ProductReview "1" -- "1" User : written_by
+ProductReview "1" -- "1" Product : reviews
+
+ContactForm "1" -- "1" User : submitted_by
+
+Notification "1" -- "1" User : sent_to
+
+Wishlist "1" -- "1" User : created_by
+Wishlist "1" -- "1" Product : contains
+
+@enduml
