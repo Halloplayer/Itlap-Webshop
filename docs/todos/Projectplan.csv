@@ -5,8 +5,7 @@ Nr,Task,Start,Planned Completion,Planned Hours,Actual Completion,Actual Hours,Re
 3,Create class diagram,09.12.2025,10.12.2025,6,,,Zelenkov,,,Fr. Ley
 4,Create file structure diagram,16.12.2025,16.12.2025,4,,,Zelenkov,,,Fr. Ley
 5,"Setup project, containers & database",17.12.2025,23.12.2025,10,,,Zelenkov,,,Fr. Ley
-,Modules and Features,,,,,,,,,
-,Frontend Part,,,,,,,,,
+,Modules and Features: Frontend Part,,,,,,,,,
 6,"Module(frontend, UI/UX): User accounts interface",24.12.2025,26.12.2025,8,,,Zelenkov,,,Fr. Ley
 7,"Module(frontend, UI/UX): Intelligent product search",30.12.2025,31.12.2025,8,,,Zelenkov,,,Fr. Ley
 8,"Module(frontend, UI/UX): Product catalog interface",06.01.2026,07.01.2026,8,,,Zelenkov,,,Fr. Ley
@@ -19,7 +18,7 @@ Nr,Task,Start,Planned Completion,Planned Hours,Actual Completion,Actual Hours,Re
 15,"Module(frontend, UI/UX): Admin dashboard",17.02.2026,18.02.2026,8,,,Zelenkov,,,Fr. Ley
 16,"Module(frontend, UI/UX): Analytics interface",24.02.2026,25.02.2026,8,,,Zelenkov,,,Fr. Ley
 17,"Module(frontend, UI/UX): Language switcher",03.03.2026,03.03.2026,4,,,Zelenkov,,,Fr. Ley
-,Backend Part,,,,,,,,,
+,Modules and Features: Backend Part,,,,,,,,,
 18,"Module(backend, communication with DB): User accounts system",04.03.2026,10.03.2026,8,,,Zelenkov,,,Fr. Ley
 19,"Module(backend, communication with DB): Product catalog system",11.03.2026,17.03.2026,8,,,Zelenkov,,,Fr. Ley
 20,"Module(backend, communication with DB): Shopping cart functionality",18.03.2026,24.03.2026,8,,,Zelenkov,,,Fr. Ley
