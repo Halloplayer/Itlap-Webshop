@@ -1,60 +1,48 @@
-Nr.;Task;Start;Planned Completion;Planned Hours;Actual Completion;Actual Hours;Responsible;Status;On Time;Approved By;;
-;Planning and Setup;;;;;;;;;;;
-1.;Create screen design;25.11.2025;26.11.2025;8;26.11.2025;8;Zelenkov;Completed;Yes;Fr. Ley;;
-2.;Create ER/UML diagram of DB;02.12.2025;03.12.2025;8;02.12.2025;6;Zelenkov;;;Fr. Ley;;
-3.;Create class diagram;09.12.2025;10.12.2025;6;;;Zelenkov;;;Fr. Ley;;
-4.;Create file structure diagram;16.12.2025;16.12.2025;4;;;Zelenkov;;;Fr. Ley;;
-5.;Setup project, containers & database;17.12.2025;23.12.2025;10;;;Zelenkov;;;Fr. Ley;;
-;Modules and Features;;;;;;;;;;;
-;Frontend Part;;;;;;;;;;;
-6.;Module(frontend, UI/UX): User accounts interface with registration/login, order history, wishlist;24.12.2025;26.12.2025;8;;;Zelenkov;;;Fr. Ley;;
-7.;Module(frontend, UI/UX): Intelligent product search, including autocomplete, typo tolerance, and voice search for easy product discovery;30.12.2025;31.12.2025;8;;;Zelenkov;;;Fr. Ley;;
-8.;Module(frontend, UI/UX): Product catalog interface with categories and filtering options specific to electronics (brands, specifications, price range);06.01.2026;07.01.2026;8;;;Zelenkov;;;Fr. Ley;;
-9.;Module(frontend, UI/UX): Shopping cart interface including add/update/remove products, save for later, and guest checkout;13.01.2026;14.01.2026;8;;;Zelenkov;;;Fr. Ley;;
-10.;Module(frontend, UI/UX): Fake payment integration supporting credit cards, PayPal, and other local/global gateways. As well as promotions support(promo codes with discounts) given by staff(people who manage products) or admins;20.01.2026;21.01.2026;8;;;Zelenkov;;;Fr. Ley;;
-11.;Module(frontend, UI/UX): Order management system with tracking, order history, cancellation, and returns processing, an interface to leave reviews;27.01.2026;28.01.2026;8;;;Zelenkov;;;Fr. Ley;;
-12.;Module(frontend, UI/UX): Contact forms;03.02.2026;03.02.2026;4;;;Zelenkov;;;Fr. Ley;;
-13.;Module(frontend, UI/UX): Notification pop up;04.02.2026;04.02.2026;4;;;Zelenkov;;;Fr. Ley;;
-14.;Module(frontend, UI/UX): Inventory management interface with real-time stock level updates, low stock alerts, and easy restocking workflows, promotion codes etc.;10.02.2026;11.02.2026;8;;;Zelenkov;;;Fr. Ley;;
-15.;Module(frontend, UI/UX): Admin dashboard for managing products, orders, customer data, and promotional campaigns;17.02.2026;18.02.2026;8;;;Zelenkov;;;Fr. Ley;;
-16.;Module(frontend, UI/UX): Analytics and reporting for sales performance, user behavior, and inventory insights;24.02.2026;25.02.2026;8;;;Zelenkov;;;Fr. Ley;;
-17.;Module(frontend, UI/UX): Language switcher;03.03.2026;03.03.2026;4;;;Zelenkov;;;Fr. Ley;;
-;Backend Part;;;;;;;;;;;
-18.;Module(backend, communication with DB): User accounts system with registration/login, order history, wishlist;04.03.2026;10.03.2026;8;;;Zelenkov;;;Fr. Ley;;
-19.;Module(backend, communication with DB): Product catalog system with categories and filtering options specific to electronics (brands, specifications, price range);11.03.2026;17.03.2026;8;;;Zelenkov;;;Fr. Ley;;
-20.;Module(backend, communication with DB): Shopping cart functionality including add/update/remove products, save for later, and guest checkout;18.03.2026;24.03.2026;8;;;Zelenkov;;;Fr. Ley;;
-21.;Module(backend, email sending involved): Fake payment integration supporting credit cards, PayPal, and other local/global gateways. As well as promotions support(promo codes with discounts) given by staff(people who manage products) or admins;25.03.2026;31.03.2026;8;;;Zelenkov;;;Fr. Ley;;
-22.;Module(backend, communication with DB): Order management system with tracking, order history, cancellation, and returns processing, reviews system;01.04.2026;07.04.2026;8;;;Zelenkov;;;Fr. Ley;;
-23.;Module(backend): Email sending system;08.04.2026;08.04.2026;4;;;Zelenkov;;;Fr. Ley;;
-24.;Module(backend, communication with DB): Inventory management interface with real-time stock level updates, low stock alerts, and easy restocking workflows, promotion codes etc.;09.04.2026;15.04.2026;8;;;Zelenkov;;;Fr. Ley;;
-25.;Module(backend, communication with DB): Admin dashboard for managing products, orders, customer data, and promotional campaigns;16.04.2026;22.04.2026;8;;;Zelenkov;;;Fr. Ley;;
-26.;Module(backend, communication with DB): Analytics and reporting for sales performance, user behavior, and inventory insights;23.04.2026;29.04.2026;8;;;Zelenkov;;;Fr. Ley;;
-;Text and Content;;;;;;;;;;;
-27.;English translation;05.05.2026;05.05.2026;3;;;Zelenkov;;;Fr. Ley;;
-28.;German translation;06.05.2026;06.05.2026;3;;;Zelenkov;;;Fr. Ley;;
-29.;Russian translation;12.05.2026;12.05.2026;3;;;Zelenkov;;;Fr. Ley;;
-30.;Privacy policy and terms & conditions to protect both the business and customers’ rights.;13.05.2026;13.05.2026;3;;;Zelenkov;;;Fr. Ley;;
-31.;FAQs;19.05.2026;19.05.2026;2;;;Zelenkov;;;Fr. Ley;;
-32.;Items' info & descriptions, Users etc. for DB;20.05.2026;20.05.2026;4;;;Zelenkov;;;Fr. Ley;;
-;Construction;;;;;;;;;Fr. Ley;;
-33.;Frontend: Implementation of the main window(s);26.05.2026;02.06.2026;8;;;Zelenkov;;;Fr. Ley;;
-34.;Frontend: Logic of the main window(s);03.06.2026;10.06.2026;8;;;Zelenkov;;;Fr. Ley;;
-35.;Everything: Implementation of all the modules;16.06.2026;23.06.2026;8;;;Zelenkov;;;Fr. Ley;;
-36.;Backend: DB Handler best solution implementation;24.06.2026;01.07.2026;8;;;Zelenkov;;;Fr. Ley;;
-37.;Backend: Data validation and security measures (preventing SQL injection);07.07.2026;14.07.2026;8;;;Zelenkov;;;Fr. Ley;;
-;Post Development;;;;;;;;;;;
-44.;Test and debugging;15.07.2026;22.07.2026;8;;;Zelenkov;;;Fr. Ley;;
-45.;Project acceptance and documentation;23.07.2026;23.07.2026;4;;;Zelenkov;;;Fr. Ley;;
-;;;Sum:;258;;;;;;;;
-;;;;;;;;;;;;
-;;;;;;;;;;;;
-;;;;;;;;;;;;
-;;;;;;;;;;;;
-;;;;;;;;;;;;
-;;;;;;;;;;;;
-;;;;;;;;;;;;
-;;;;;;;;;;;;
-;;;;;;;;;;;;
-;;;;;;;;;;;;
-;;;;;;;;;;;;
-;;;;;;;;;;;;
+Nr,Task,Start,Planned Completion,Planned Hours,Actual Completion,Actual Hours,Responsible,Status,On Time,Approved By
+,"Planning and Setup","","","","","","","","",""
+1,"Create screen design","25.11.2025","26.11.2025",8,"26.11.2025",8,"Zelenkov","Completed","Yes","Fr. Ley"
+2,"Create ER/UML diagram of DB","02.12.2025","03.12.2025",8,"02.12.2025",6,"Zelenkov","","","Fr. Ley"
+3,"Create class diagram","09.12.2025","10.12.2025",6,"","","Zelenkov","","","Fr. Ley"
+4,"Create file structure diagram","16.12.2025","16.12.2025",4,"","","Zelenkov","","","Fr. Ley"
+5,"Setup project, containers & database","17.12.2025","23.12.2025",10,"","","Zelenkov","","","Fr. Ley"
+,"Modules and Features","","","","","","","","",""
+,"Frontend Part","","","","","","","","",""
+6,"Module(frontend, UI/UX): User accounts interface with registration/login, order history, wishlist","24.12.2025","26.12.2025",8,"","","Zelenkov","","","Fr. Ley"
+7,"Module(frontend, UI/UX): Intelligent product search, including autocomplete, typo tolerance, and voice search for easy product discovery","30.12.2025","31.12.2025",8,"","","Zelenkov","","","Fr. Ley"
+8,"Module(frontend, UI/UX): Product catalog interface with categories and filtering options specific to electronics (brands, specifications, price range)","06.01.2026","07.01.2026",8,"","","Zelenkov","","","Fr. Ley"
+9,"Module(frontend, UI/UX): Shopping cart interface including add/update/remove products, save for later, and guest checkout","13.01.2026","14.01.2026",8,"","","Zelenkov","","","Fr. Ley"
+10,"Module(frontend, UI/UX): Fake payment integration supporting credit cards, PayPal, and other local/global gateways. As well as promotions support(promo codes with discounts) given by staff(people who manage products) or admins","20.01.2026","21.01.2026",8,"","","Zelenkov","","","Fr. Ley"
+11,"Module(frontend, UI/UX): Order management system with tracking, order history, cancellation, and returns processing, an interface to leave reviews","27.01.2026","28.01.2026",8,"","","Zelenkov","","","Fr. Ley"
+12,"Module(frontend, UI/UX): Contact forms","03.02.2026","03.02.2026",4,"","","Zelenkov","","","Fr. Ley"
+13,"Module(frontend, UI/UX): Notification pop up","04.02.2026","04.02.2026",4,"","","Zelenkov","","","Fr. Ley"
+14,"Module(frontend, UI/UX): Inventory management interface with real-time stock level updates, low stock alerts, and easy restocking workflows, promotion codes etc.","10.02.2026","11.02.2026",8,"","","Zelenkov","","","Fr. Ley"
+15,"Module(frontend, UI/UX): Admin dashboard for managing products, orders, customer data, and promotional campaigns","17.02.2026","18.02.2026",8,"","","Zelenkov","","","Fr. Ley"
+16,"Module(frontend, UI/UX): Analytics and reporting for sales performance, user behavior, and inventory insights","24.02.2026","25.02.2026",8,"","","Zelenkov","","","Fr. Ley"
+17,"Module(frontend, UI/UX): Language switcher","03.03.2026","03.03.2026",4,"","","Zelenkov","","","Fr. Ley"
+,"Backend Part","","","","","","","","",""
+18,"Module(backend, communication with DB): User accounts system with registration/login, order history, wishlist","04.03.2026","10.03.2026",8,"","","Zelenkov","","","Fr. Ley"
+19,"Module(backend, communication with DB): Product catalog system with categories and filtering options specific to electronics (brands, specifications, price range)","11.03.2026","17.03.2026",8,"","","Zelenkov","","","Fr. Ley"
+20,"Module(backend, communication with DB): Shopping cart functionality including add/update/remove products, save for later, and guest checkout","18.03.2026","24.03.2026",8,"","","Zelenkov","","","Fr. Ley"
+21,"Module(backend, email sending involved): Fake payment integration supporting credit cards, PayPal, and other local/global gateways. As well as promotions support(promo codes with discounts) given by staff(people who manage products) or admins","25.03.2026","31.03.2026",8,"","","Zelenkov","","","Fr. Ley"
+22,"Module(backend, communication with DB): Order management system with tracking, order history, cancellation, and returns processing, reviews system","01.04.2026","07.04.2026",8,"","","Zelenkov","","","Fr. Ley"
+23,"Module(backend): Email sending system","08.04.2026","08.04.2026",4,"","","Zelenkov","","","Fr. Ley"
+24,"Module(backend, communication with DB): Inventory management interface with real-time stock level updates, low stock alerts, and easy restocking workflows, promotion codes etc.","09.04.2026","15.04.2026",8,"","","Zelenkov","","","Fr. Ley"
+25,"Module(backend, communication with DB): Admin dashboard for managing products, orders, customer data, and promotional campaigns","16.04.2026","22.04.2026",8,"","","Zelenkov","","","Fr. Ley"
+26,"Module(backend, communication with DB): Analytics and reporting for sales performance, user behavior, and inventory insights","23.04.2026","29.04.2026",8,"","","Zelenkov","","","Fr. Ley"
+,"Text and Content","","","","","","","","",""
+27,"English translation","05.05.2026","05.05.2026",3,"","","Zelenkov","","","Fr. Ley"
+28,"German translation","06.05.2026","06.05.2026",3,"","","Zelenkov","","","Fr. Ley"
+29,"Russian translation","12.05.2026","12.05.2026",3,"","","Zelenkov","","","Fr. Ley"
+30,"Privacy policy and terms & conditions to protect both the business and customers' rights.","13.05.2026","13.05.2026",3,"","","Zelenkov","","","Fr. Ley"
+31,"FAQs","19.05.2026","19.05.2026",2,"","","Zelenkov","","","Fr. Ley"
+32,"Items' info & descriptions, Users etc. for DB","20.05.2026","20.05.2026",4,"","","Zelenkov","","","Fr. Ley"
+,"Construction","","","","","","","","","Fr. Ley"
+33,"Frontend: Implementation of the main window(s)","26.05.2026","02.06.2026",8,"","","Zelenkov","","","Fr. Ley"
+34,"Frontend: Logic of the main window(s)","03.06.2026","10.06.2026",8,"","","Zelenkov","","","Fr. Ley"
+35,"Everything: Implementation of all the modules","16.06.2026","23.06.2026",8,"","","Zelenkov","","","Fr. Ley"
+36,"Backend: DB Handler best solution implementation","24.06.2026","01.07.2026",8,"","","Zelenkov","","","Fr. Ley"
+37,"Backend: Data validation and security measures (preventing SQL injection)","07.07.2026","14.07.2026",8,"","","Zelenkov","","","Fr. Ley"
+,"Post Development","","","","","","","","",""
+44,"Test and debugging","15.07.2026","22.07.2026",8,"","","Zelenkov","","","Fr. Ley"
+45,"Project acceptance and documentation","23.07.2026","23.07.2026",4,"","","Zelenkov","","","Fr. Ley"
+,"Sum:","","",258,"","","","","",""
