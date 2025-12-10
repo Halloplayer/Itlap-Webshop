@@ -1,7 +1,4 @@
 # WEBSHOP DATABASE ER/UML DIAGRAM
-## Streamlined Version - 17 Tables
-
----
 
 ## TABLE OVERVIEW
 
@@ -40,8 +37,6 @@
 **Total: 17 tables** (down from 39)
 **Covers all core functionality** needed for electronics e-commerce
 
----
-
 ## KEY RELATIONSHIPS
 
 ### Users (Central Hub)
@@ -75,8 +70,6 @@
 ### Other
 - promotions → promo_usage (1:*)
 
----
-
 ## IMPORT INSTRUCTIONS
 
 ### For MySQL/MariaDB
@@ -100,8 +93,6 @@
 3. Draw.io / Lucidchart:
    - Import .puml file
    - Auto-generates diagram
-
----
 
 ## TABLE DEFINITIONS
 
@@ -236,8 +227,6 @@
 - is_read
 - created_at
 
----
-
 ## DATABASE STATISTICS
 
 - **Total Tables**: 17
@@ -247,8 +236,6 @@
 - **Supported Users**: 1000s to millions
 - **Order History**: Complete tracking
 - **Analytics**: Review counts, ratings, product performance
-
----
 
 ## KEY FEATURES SUPPORTED
 
@@ -267,8 +254,6 @@
 ✓ Notifications<br>
 ✓ No payment/shipping infrastructure (simplified)
 
----
-
 ## SCALABILITY
 
 For small to medium sites (100k-1M orders):
@@ -281,8 +266,6 @@ Future optimization:
 - Partition page_visits by date (if added)
 - Cache product ratings/counts
 
----
-
 ## SECURITY NOTES
 
 - Passwords stored as hashes only
@@ -290,7 +273,3 @@ Future optimization:
 - Foreign keys prevent orphaned records
 - Timestamps on all audit events
 - User types (customer/admin/staff) for role-based access
-
----
-
-END OF DOCUMENTATION
