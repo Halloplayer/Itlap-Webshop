@@ -2,7 +2,7 @@ Nr,Task,Start,Planned Completion,Planned Hours,Actual Completion,Actual Hours,Re
 ,Planning and Setup,,,,,,,,,
 1,Create screen design,25.11.2025,26.11.2025,8,26.11.2025,8,Zelenkov,Completed,Yes,Fr. Ley
 2,Create ER/UML diagram of DB,02.12.2025,03.12.2025,8,02.12.2025,6,Zelenkov,Completed,Yes,Fr. Ley
-3,Create class diagram,09.12.2025,10.12.2025,6,,,Zelenkov,,,Fr. Ley
+3,Create class diagram,09.12.2025,10.12.2025,6,10.12.2025,6,Zelenkov,Completed,Yes,Fr. Ley
 4,Create file structure diagram,16.12.2025,16.12.2025,4,,,Zelenkov,,,Fr. Ley
 5,"Setup project, containers & database",17.12.2025,23.12.2025,10,,,Zelenkov,,,Fr. Ley
 ,Modules and Features: Frontend Part,,,,,,,,,
