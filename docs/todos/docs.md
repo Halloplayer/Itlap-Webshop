@@ -1,7 +1,5 @@
 # PROJECT PLAN DOCUMENTATION
 
----
-
 ## Task 1
 
 **Description:** Create screen design
@@ -13,8 +11,6 @@
 **Planned Hours:** 8
 
 **Responsible:** Zelenkov
-
----
 
 ## Task 2
 
@@ -28,8 +24,6 @@
 
 **Responsible:** Zelenkov
 
----
-
 ## Task 3
 
 **Description:** Create class diagram
@@ -41,8 +35,6 @@
 **Planned Hours:** 6
 
 **Responsible:** Zelenkov
-
----
 
 ## Task 4
 
@@ -56,8 +48,6 @@
 
 **Responsible:** Zelenkov
 
----
-
 ## Task 5
 
 **Description:** Setup project, containers & database
@@ -69,8 +59,6 @@
 **Planned Hours:** 10
 
 **Responsible:** Zelenkov
-
----
 
 ## Task 6
 
@@ -84,8 +72,6 @@
 
 **Responsible:** Zelenkov
 
----
-
 ## Task 7
 
 **Description:** Module(frontend, UI/UX): Intelligent product search, including autocomplete, typo tolerance, and voice search for easy product discovery
@@ -97,8 +83,6 @@
 **Planned Hours:** 8
 
 **Responsible:** Zelenkov
-
----
 
 ## Task 8
 
@@ -112,8 +96,6 @@
 
 **Responsible:** Zelenkov
 
----
-
 ## Task 9
 
 **Description:** Module(frontend, UI/UX): Shopping cart interface including add/update/remove products, save for later, and guest checkout
@@ -125,8 +107,6 @@
 **Planned Hours:** 8
 
 **Responsible:** Zelenkov
-
----
 
 ## Task 10
 
@@ -140,8 +120,6 @@
 
 **Responsible:** Zelenkov
 
----
-
 ## Task 11
 
 **Description:** Module(frontend, UI/UX): Order management system with tracking, order history, cancellation, and returns processing, an interface to leave reviews
@@ -153,8 +131,6 @@
 **Planned Hours:** 8
 
 **Responsible:** Zelenkov
-
----
 
 ## Task 12
 
@@ -168,8 +144,6 @@
 
 **Responsible:** Zelenkov
 
----
-
 ## Task 13
 
 **Description:** Module(frontend, UI/UX): Notification pop up
@@ -181,8 +155,6 @@
 **Planned Hours:** 4
 
 **Responsible:** Zelenkov
-
----
 
 ## Task 14
 
@@ -196,8 +168,6 @@
 
 **Responsible:** Zelenkov
 
----
-
 ## Task 15
 
 **Description:** Module(frontend, UI/UX): Admin dashboard for managing products, orders, customer data, and promotional campaigns
@@ -209,8 +179,6 @@
 **Planned Hours:** 8
 
 **Responsible:** Zelenkov
-
----
 
 ## Task 16
 
@@ -224,8 +192,6 @@
 
 **Responsible:** Zelenkov
 
----
-
 ## Task 17
 
 **Description:** Module(frontend, UI/UX): Language switcher
@@ -237,8 +203,6 @@
 **Planned Hours:** 4
 
 **Responsible:** Zelenkov
-
----
 
 ## Task 18
 
@@ -252,8 +216,6 @@
 
 **Responsible:** Zelenkov
 
----
-
 ## Task 19
 
 **Description:** Module(backend, communication with DB): Product catalog system with categories and filtering options specific to electronics (brands, specifications, price range)
@@ -265,8 +227,6 @@
 **Planned Hours:** 8
 
 **Responsible:** Zelenkov
-
----
 
 ## Task 20
 
@@ -280,8 +240,6 @@
 
 **Responsible:** Zelenkov
 
----
-
 ## Task 21
 
 **Description:** Module(backend, email sending involved): Fake payment integration supporting credit cards, PayPal, and other local/global gateways. As well as promotions support(promo codes with discounts) given by staff(people who manage products) or admins
@@ -293,8 +251,6 @@
 **Planned Hours:** 8
 
 **Responsible:** Zelenkov
-
----
 
 ## Task 22
 
@@ -308,8 +264,6 @@
 
 **Responsible:** Zelenkov
 
----
-
 ## Task 23
 
 **Description:** Module(backend): Email sending system
@@ -321,8 +275,6 @@
 **Planned Hours:** 4
 
 **Responsible:** Zelenkov
-
----
 
 ## Task 24
 
@@ -336,8 +288,6 @@
 
 **Responsible:** Zelenkov
 
----
-
 ## Task 25
 
 **Description:** Module(backend, communication with DB): Admin dashboard for managing products, orders, customer data, and promotional campaigns
@@ -349,8 +299,6 @@
 **Planned Hours:** 8
 
 **Responsible:** Zelenkov
-
----
 
 ## Task 26
 
@@ -364,8 +312,6 @@
 
 **Responsible:** Zelenkov
 
----
-
 ## Task 27
 
 **Description:** English translation
@@ -377,8 +323,6 @@
 **Planned Hours:** 3
 
 **Responsible:** Zelenkov
-
----
 
 ## Task 28
 
@@ -392,8 +336,6 @@
 
 **Responsible:** Zelenkov
 
----
-
 ## Task 29
 
 **Description:** Russian translation
@@ -405,8 +347,6 @@
 **Planned Hours:** 3
 
 **Responsible:** Zelenkov
-
----
 
 ## Task 30
 
@@ -420,7 +360,6 @@
 
 **Responsible:** Zelenkov
 
----
 
 ## Task 31
 
@@ -434,7 +373,6 @@
 
 **Responsible:** Zelenkov
 
----
 
 ## Task 32
 
@@ -448,8 +386,6 @@
 
 **Responsible:** Zelenkov
 
----
-
 ## Task 33
 
 **Description:** Frontend: Implementation of the main window(s)
@@ -461,8 +397,6 @@
 **Planned Hours:** 8
 
 **Responsible:** Zelenkov
-
----
 
 ## Task 34
 
@@ -476,8 +410,6 @@
 
 **Responsible:** Zelenkov
 
----
-
 ## Task 35
 
 **Description:** Everything: Implementation of all the modules
@@ -489,8 +421,6 @@
 **Planned Hours:** 8
 
 **Responsible:** Zelenkov
-
----
 
 ## Task 36
 
@@ -504,8 +434,6 @@
 
 **Responsible:** Zelenkov
 
----
-
 ## Task 37
 
 **Description:** Backend: Data validation and security measures (preventing SQL injection)
@@ -517,8 +445,6 @@
 **Planned Hours:** 8
 
 **Responsible:** Zelenkov
-
----
 
 ## Task 44
 
@@ -532,8 +458,6 @@
 
 **Responsible:** Zelenkov
 
----
-
 ## Task 45
 
 **Description:** Project acceptance and documentation
@@ -545,4 +469,3 @@
 **Planned Hours:** 4
 
 **Responsible:** Zelenkov
-
